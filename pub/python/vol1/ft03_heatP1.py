@@ -61,7 +61,7 @@ for n in range(num_steps):
     u_D.t = t
 
     # Compute solution
-    solve(a == L, u, bc)
+    solve(a == L, u, bc1,bc2)
 
     # Plot solution
     plot(u)
