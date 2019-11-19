@@ -21,7 +21,7 @@ alpha = 0          # parameter alpha
 beta = 0         # parameter beta
 
 # Create mesh and define function space
-mesh = RectangleMesh(Point(0, 0), Point(L, W), 30,80) #2D mesh
+mesh = RectangleMesh(Point(0, 0), Point(0.03,0.08), 30,80) #2D mesh
 V = FunctionSpace(mesh, 'P', 1)
 
 # Define boundary condition
