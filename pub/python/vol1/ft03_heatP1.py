@@ -14,11 +14,11 @@ from __future__ import print_function
 from fenics import *
 import numpy as np
 
-T = 2.0            # final time
-num_steps = 10     # number of time steps
+T = 0.0            # final time
+num_steps = 1     # number of time steps
 dt = T / num_steps # time step size
-alpha = 3          # parameter alpha
-beta = 1.2         # parameter beta
+alpha = 0          # parameter alpha
+beta = 0         # parameter beta
 
 # Create mesh and define function space
 nx = ny = 8
