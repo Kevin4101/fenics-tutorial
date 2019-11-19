@@ -21,18 +21,23 @@ alpha = 0          # parameter alpha
 beta = 0         # parameter beta
 
 # Create mesh and define function space
-nx = ny = 8
-mesh = UnitSquareMesh(nx, ny)
+mesh = RectangleMesh(Point(0, 0), Point(L, W), 30,80) #2D mesh
 V = FunctionSpace(mesh, 'P', 1)
 
 # Define boundary condition
-u_D = Expression('1 + x[0]*x[0] + alpha*x[1]*x[1] + beta*t',
+u_D1 = Expression('300 + 0*x[0]*x[0] + alpha*x[1]*x[1] + beta*t',
+                 degree=2, alpha=alpha, beta=beta, t=0)
+u_D2 = Expression('310 + 0*x[0]*x[0] + alpha*x[1]*x[1] + beta*t',
                  degree=2, alpha=alpha, beta=beta, t=0)
 
-def boundary(x, on_boundary):
-    return on_boundary
+def lboundary(y=0, on_boundary):
+    return on_lboundary
+  
+def uboundary(y=0.08, on_boundary):
+    return on_uboundary
 
-bc = DirichletBC(V, u_D, boundary)
+bc1 = DirichletBC(V, u_D1, lboundary)
+bc2 = DirichletBC(V, u_D2, uboundary)
 
 # Define initial value
 u_n = interpolate(u_D, V)
